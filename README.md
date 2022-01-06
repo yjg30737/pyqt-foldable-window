@@ -7,6 +7,11 @@ PyQt5 >= 5.8
 ## Setup
 ```pip3 install git+https://github.com/yjg30737/pyqt-foldable-window.git --upgrade```
 
+## Feature
+* Being able to fold, unfold window by toggle button on the menu bar
+* Being able to move the window with dragging menu bar
+* Being able to close (obviously)
+
 ## Example
 ```python
 from PyQt5.QtWidgets import QApplication, QTextEdit
