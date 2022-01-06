@@ -37,3 +37,7 @@ Unfolded state
 Folded state
 
 ![image](https://user-images.githubusercontent.com/55078043/148364439-3ffeaad8-5a6f-4e80-bd03-8bd498255b03.png)
+
+## Note
+
+I didn't add any features to let user set their customized menu bar. Maybe i will add that feature in any ways.
