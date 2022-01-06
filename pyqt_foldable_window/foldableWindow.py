@@ -31,28 +31,28 @@ class FoldableWindow(QWidget):
         lay = self.layout()
         self.__menuBar = menubar
         self.__menuBar.setMinimumHeight(self.__menuBar.sizeHint().height())
-        self.__menuBar.shrink.connect(self.__shrink)
-        self.__menuBar.expand.connect(self.__expand)
+        self.__menuBar.fold.connect(self.__fold)
+        self.__menuBar.unfold.connect(self.__unfold)
 
         lay.insertWidget(0, self.__menuBar)
         lay_margin = self.__n_margin // 4
         lay.setContentsMargins(lay_margin, lay_margin, lay_margin, lay_margin)
         lay.setSpacing(0)
 
-        self.__shrinkExpandAnimation = QPropertyAnimation(self, b"height")
-        self.__shrinkExpandAnimation.valueChanged.connect(self.setFixedHeight)
-        self.__shrinkExpandAnimation.setStartValue(self.height())
-        self.__shrinkExpandAnimation.setDuration(200)
-        self.__shrinkExpandAnimation.setEndValue(self.__menuBar.sizeHint().height() + self.__n_margin // 2 - 1)
+        self.__foldUnfoldAnimation = QPropertyAnimation(self, b"height")
+        self.__foldUnfoldAnimation.valueChanged.connect(self.setFixedHeight)
+        self.__foldUnfoldAnimation.setStartValue(self.height())
+        self.__foldUnfoldAnimation.setDuration(200)
+        self.__foldUnfoldAnimation.setEndValue(self.__menuBar.sizeHint().height() + self.__n_margin // 2 - 1)
 
-    def __shrink(self):
-        self.__shrinkExpandAnimation.setDirection(QAbstractAnimation.Forward)
-        self.__shrinkExpandAnimation.start()
+    def __fold(self):
+        self.__foldUnfoldAnimation.setDirection(QAbstractAnimation.Forward)
+        self.__foldUnfoldAnimation.start()
         self.__menuBar.raise_()
 
-    def __expand(self):
-        self.__shrinkExpandAnimation.setDirection(QAbstractAnimation.Backward)
-        self.__shrinkExpandAnimation.start()
+    def __unfold(self):
+        self.__foldUnfoldAnimation.setDirection(QAbstractAnimation.Backward)
+        self.__foldUnfoldAnimation.start()
         self.__menuBar.raise_()
 
 

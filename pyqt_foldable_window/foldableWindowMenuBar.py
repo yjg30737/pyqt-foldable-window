@@ -4,8 +4,8 @@ from pyqt_resource_helper import PyQtResourceHelper
 
 
 class FoldableWindowMenuBar(QMenuBar):
-    shrink = pyqtSignal()
-    expand = pyqtSignal()
+    fold = pyqtSignal()
+    unfold = pyqtSignal()
 
     def __init__(self, parent):
         super().__init__()
@@ -23,7 +23,7 @@ class FoldableWindowMenuBar(QMenuBar):
         self.__arrowBtn.setCheckable(True)
         self.__arrowBtn.toggled.connect(self.__toggled)
         PyQtResourceHelper.setStyleSheet([self.__arrowBtn], ['style/button.css'])
-        PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/conceal.png'])
+        PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
 
         self.__closeBtn = QPushButton()
         self.__closeBtn.clicked.connect(qApp.exit)
@@ -45,17 +45,17 @@ class FoldableWindowMenuBar(QMenuBar):
 
     def __toggled(self, f):
         if f:
-            self.__shrink()
-            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/reveal.png'])
+            self.__fold()
+            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/unfold.png'])
         else:
-            self.__expand()
-            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/conceal.png'])
+            self.__unfold()
+            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
 
-    def __shrink(self):
-        self.shrink.emit()
+    def __fold(self):
+        self.fold.emit()
 
-    def __expand(self):
-        self.expand.emit()
+    def __unfold(self):
+        self.unfold.emit()
 
     def mousePressEvent(self, e):
         if e.button() == Qt.LeftButton:
