@@ -61,18 +61,3 @@ class FoldableWindow(CustomTitlebarWindow):
         self.__foldUnfoldAnimation.setDirection(QAbstractAnimation.Backward)
         self.__foldUnfoldAnimation.start()
         self.__menuBar.raise_()
-
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-    mainWindow = QMainWindow()
-    menuBar = QMenuBar()
-    fileMenu = QMenu('File', mainWindow)
-    menuBar.addMenu(fileMenu)
-    mainWindow.setMenuBar(menuBar)
-    window = FoldableWindow(mainWindow)
-    window.setMinMaxCloseButton()
-    window.show()
-    app.exec_()
