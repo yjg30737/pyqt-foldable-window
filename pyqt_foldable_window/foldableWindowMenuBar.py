@@ -80,7 +80,6 @@ class FoldableWindowMenuBar(QMenuBar):
         return super().mouseReleaseEvent(e)
 
     # Maximize/normalize when user double-clicks the menu bar
-    s = ''' 
     def mouseDoubleClickEvent(self, e):
         if e.button() == Qt.LeftButton:
             p = e.pos()
@@ -90,6 +89,10 @@ class FoldableWindowMenuBar(QMenuBar):
                 if self.__parent.isMaximized():
                     self.__parent.showNormal()
                 else:
+                    if self.__arrowBtn.isChecked():
+                        self.__arrowBtn.toggled.disconnect(self.__toggled)
+                        self.__arrowBtn.toggle()
+                        PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
+                        self.__arrowBtn.toggled.connect(self.__toggled)
                     self.__parent.showMaximized()
         return super().mouseDoubleClickEvent(e)
-    '''
