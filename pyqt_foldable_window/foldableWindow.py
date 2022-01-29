@@ -2,48 +2,55 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-from pyqt_foldable_window.foldableWindowMenuBar import FoldableWindowMenuBar
+from pyqt_custom_titlebar_window.customTitlebarWindow import CustomTitlebarWindow
+from pyqt_resource_helper import PyQtResourceHelper
 
 
-class FoldableWindow(QWidget):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.__n_margin = 10
-        self.__initUi()
+class FoldableWindow(CustomTitlebarWindow):
+    def __init__(self, main_window: QMainWindow):
+        super().__init__(main_window)
+        self.__initUi(main_window)
 
-    def __initUi(self):
-        self.setWindowFlags(Qt.FramelessWindowHint)
+    def __initUi(self, main_window):
+        self.addFoldableFeature(main_window)
 
-        self.__cursor = QCursor()
+    def addFoldableFeature(self, main_window: QMainWindow):
+        self.__menuBar = main_window.menuBar()
 
-        self.setMouseTracking(True)
-
-        self.setFixedSize(200, 200)
-
-        lay = QVBoxLayout()
-        lay.setAlignment(Qt.AlignTop)
-        self.setLayout(lay)
-
-        menubar = FoldableWindowMenuBar(self)
-        self.setMenuBar(menubar)
-
-    def setMenuBar(self, menubar: QMenuBar):
-        lay = self.layout()
-        self.__menuBar = menubar
-        self.__menuBar.setMinimumHeight(self.__menuBar.sizeHint().height())
-        self.__menuBar.fold.connect(self.__fold)
-        self.__menuBar.unfold.connect(self.__unfold)
-
-        lay.insertWidget(0, self.__menuBar)
-        lay_margin = self.__n_margin // 4
-        lay.setContentsMargins(lay_margin, lay_margin, lay_margin, lay_margin)
+        lay = QHBoxLayout()
+        lay.setContentsMargins(0, 0, 0, 0)
         lay.setSpacing(0)
+
+        cornerWidget = QWidget()
+        cornerWidget.setLayout(lay)
+
+        existingCornerWidget = self.__menuBar.cornerWidget(Qt.TopRightCorner)
+        if existingCornerWidget:
+            lay.insertWidget(0, existingCornerWidget)
+
+        self.__arrowBtn = QPushButton()
+        self.__arrowBtn.setCheckable(True)
+        self.__arrowBtn.toggled.connect(self.__toggled)
+        PyQtResourceHelper.setStyleSheet([self.__arrowBtn], ['style/button.css'])
+        PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
+
+        lay.addWidget(self.__arrowBtn)
+        cornerWidget.setLayout(lay)
+        self.__menuBar.setCornerWidget(cornerWidget)
 
         self.__foldUnfoldAnimation = QPropertyAnimation(self, b"height")
         self.__foldUnfoldAnimation.valueChanged.connect(self.setFixedHeight)
         self.__foldUnfoldAnimation.setStartValue(self.height())
         self.__foldUnfoldAnimation.setDuration(200)
-        self.__foldUnfoldAnimation.setEndValue(self.__menuBar.sizeHint().height() + self.__n_margin // 2 - 1)
+        self.__foldUnfoldAnimation.setEndValue(self.__menuBar.sizeHint().height() + self._margin + 2)
+
+    def __toggled(self, f):
+        if f:
+            self.__fold()
+            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/unfold.png'])
+        else:
+            self.__unfold()
+            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
 
     def __fold(self):
         self.__foldUnfoldAnimation.setDirection(QAbstractAnimation.Forward)
@@ -60,7 +67,12 @@ if __name__ == "__main__":
     import sys
 
     app = QApplication(sys.argv)
-    window = FoldableWindow()
-    window.layout().addWidget(QTextEdit())
+    mainWindow = QMainWindow()
+    menuBar = QMenuBar()
+    fileMenu = QMenu('File', mainWindow)
+    menuBar.addMenu(fileMenu)
+    mainWindow.setMenuBar(menuBar)
+    window = FoldableWindow(mainWindow)
+    window.setMinMaxCloseButton()
     window.show()
     app.exec_()
