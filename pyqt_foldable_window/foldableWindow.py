@@ -12,9 +12,9 @@ class FoldableWindow(CustomTitlebarWindow):
         self.__initUi(main_window)
 
     def __initUi(self, main_window):
-        self.addFoldableFeature(main_window)
+        self.__addFoldableFeature(main_window)
 
-    def addFoldableFeature(self, main_window: QMainWindow):
+    def __addFoldableFeature(self, main_window: QMainWindow):
         self.__menuBar = main_window.menuBar()
 
         lay = QHBoxLayout()
