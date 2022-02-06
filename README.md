@@ -57,4 +57,4 @@ Folded state
 ## Note
 ```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur.
 
-```setMinMaxCloseButton``` and ```FoldableWindow```'s fold/unfold feature will be not synchronized well. It is not like causing error, just pet peeve of mine.
+If you use ```setMinMaxCloseButton```, showing maximize/normal feature and ```FoldableWindow```'s fold/unfold feature will be not synchronized well. It is not like causing error, just pet peeve of mine.
