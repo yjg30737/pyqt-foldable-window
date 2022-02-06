@@ -37,6 +37,9 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     window = FoldableWindow(MainWindow())
+    # if you want to add min/max/close button to the top right, add line below. 
+    # that is pyqt-custom-titlebar-window(parent class of this)'s feature.
+    # window.setMinMaxCloseButton()
     window.show()
     app.exec_()
 ```
@@ -52,4 +55,6 @@ Folded state
 ![image](https://user-images.githubusercontent.com/55078043/152663909-8a7766b7-3efc-4398-bbc8-73094be9aa87.png)
 
 ## Note
-```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur. 
+```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur.
+
+```setMinMaxCloseButton``` and ```FoldableWindow```'s fold/unfold feature will be not synchronized well. It is not like causing error, just pet peeve of mine.
