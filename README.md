@@ -52,4 +52,4 @@ Folded state
 ![image](https://user-images.githubusercontent.com/55078043/152663909-8a7766b7-3efc-4398-bbc8-73094be9aa87.png)
 
 ## Note
-FoldableWindow's argument should be only ```QMainWindow``` kind of class that QMenuBar exists. If that is not exist, error will occur. 
+```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur. 
