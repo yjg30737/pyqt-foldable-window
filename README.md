@@ -58,3 +58,6 @@ Folded state
 ```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur.
 
 If you use ```setMinMaxCloseButton```, showing maximize/normal feature and ```FoldableWindow```'s fold/unfold feature will be not synchronized well. It is not like causing error, just pet peeve of mine.
+
+## See Also
+* <a href="https://github.com/yjg30737/pyqt-foldable-item-list-widget.git">pyqt-foldable-item-list-widget</a>
