@@ -13,6 +13,7 @@ setup(
     url='https://github.com/yjg30737/pyqt-foldable-window.git',
     install_requires=[
         'PyQt5>=5.15',
+        'pyqt-svg-icon-pushbutton @ git+https://git@github.com/yjg30737/pyqt-svg-icon-pushbutton.git@main',
         'pyqt-resource-helper @ git+https://git@github.com/yjg30737/pyqt-resource-helper.git@main',
         'pyqt-custom-titlebar-window @ git+https://git@github.com/yjg30737/pyqt-custom-titlebar-window.git@main'
     ]

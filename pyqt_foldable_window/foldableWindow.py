@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import *
 
 from pyqt_custom_titlebar_window.customTitlebarWindow import CustomTitlebarWindow
 from pyqt_resource_helper import PyQtResourceHelper
+from pyqt_svg_icon_pushbutton import SvgIconPushButton
 
 
 class FoldableWindow(CustomTitlebarWindow):
@@ -28,11 +29,12 @@ class FoldableWindow(CustomTitlebarWindow):
         if existingCornerWidget:
             lay.insertWidget(0, existingCornerWidget)
 
-        self.__arrowBtn = QPushButton()
+        self.__arrowBtn = SvgIconPushButton()
         self.__arrowBtn.setCheckable(True)
         self.__arrowBtn.toggled.connect(self.__toggled)
+
         PyQtResourceHelper.setStyleSheet([self.__arrowBtn], ['style/button.css'])
-        PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
+        self.__arrowBtn.setIcon('ico/fold.svg')
 
         lay.addWidget(self.__arrowBtn)
         cornerWidget.setLayout(lay)
@@ -47,10 +49,10 @@ class FoldableWindow(CustomTitlebarWindow):
     def __toggled(self, f):
         if f:
             self.__fold()
-            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/unfold.png'])
+            self.__arrowBtn.setIcon('ico/unfold.svg')
         else:
             self.__unfold()
-            PyQtResourceHelper.setIcon([self.__arrowBtn], ['ico/fold.png'])
+            self.__arrowBtn.setIcon('ico/fold.svg')
 
     def __fold(self):
         self.__foldUnfoldAnimation.setDirection(QAbstractAnimation.Forward)
