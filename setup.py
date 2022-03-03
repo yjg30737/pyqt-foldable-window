@@ -8,7 +8,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     package_data={'pyqt_foldable_window.style': ['button.css'],
-                  'pyqt_foldable_window.ico': ['fold.png', 'unfold.png']},
+                  'pyqt_foldable_window.ico': ['fold.svg', 'unfold.svg']},
     description='PyQt foldable window',
     url='https://github.com/yjg30737/pyqt-foldable-window.git',
     install_requires=[
