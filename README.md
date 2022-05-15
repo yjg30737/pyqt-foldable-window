@@ -11,7 +11,7 @@ I will add this feature to <a href="https://github.com/yjg30737/pyqt-custom-titl
 PyQt5 >= 5.8
 
 ## Setup
-```pip3 install git+https://github.com/yjg30737/pyqt-foldable-window.git --upgrade```
+`pip3 install git+https://github.com/yjg30737/pyqt-foldable-window.git --upgrade`
 
 ## Included Packages
 * <a href="https://github.com/yjg30737/pyqt-svg-icon-pushbutton.git">pyqt-svg-icon-pushbutton</a>
@@ -61,7 +61,7 @@ Folded state
 ![image](https://user-images.githubusercontent.com/55078043/152663909-8a7766b7-3efc-4398-bbc8-73094be9aa87.png)
 
 ## Note
-```FoldableWindow```'s argument should be only ```QMainWindow``` kind of class that ```QMenuBar``` exists. If that is not exist, error will occur.
+`FoldableWindow`'s argument should be only `QMainWindow` kind of class that `QMenuBar` exists. If that is not exist, error will occur.
 
 ## See Also
 * <a href="https://github.com/yjg30737/pyqt-foldable-item-list-widget.git">pyqt-foldable-item-list-widget</a>
