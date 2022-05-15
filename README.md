@@ -1,11 +1,9 @@
 # pyqt-foldable-window
 PyQt foldable window
 
-== 2022/05/15 ==
-
-This is for tutorial/example.
-
 I will add this feature to <a href="https://github.com/yjg30737/pyqt-custom-titlebar-window.git">pyqt-custom-titlebar-window</a>.
+
+Even though this included aforementioned package.
 
 ## Requirements
 PyQt5 >= 5.8
