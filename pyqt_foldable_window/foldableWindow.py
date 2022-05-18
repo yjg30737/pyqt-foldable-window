@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 
 from pyqt_custom_titlebar_window.customTitlebarWindow import CustomTitlebarWindow
 from pyqt_resource_helper import PyQtResourceHelper
-from pyqt_svg_icon_pushbutton import SvgIconPushButton
+from pyqt_svg_button import SvgButton
 
 
 class FoldableWindow(CustomTitlebarWindow):
@@ -29,7 +29,7 @@ class FoldableWindow(CustomTitlebarWindow):
         if existingCornerWidget:
             lay.insertWidget(0, existingCornerWidget)
 
-        self.__arrowBtn = SvgIconPushButton()
+        self.__arrowBtn = SvgButton()
         self.__arrowBtn.setCheckable(True)
         self.__arrowBtn.toggled.connect(self.__toggled)
 
