@@ -12,14 +12,13 @@ PyQt5 >= 5.8
 `pip3 install git+https://github.com/yjg30737/pyqt-foldable-window.git --upgrade`
 
 ## Included Packages
-* <a href="https://github.com/yjg30737/pyqt-svg-icon-pushbutton.git">pyqt-svg-icon-pushbutton</a>
+* <a href="https://github.com/yjg30737/pyqt-svg-button.git">pyqt-svg-button</a>
 * <a href="https://github.com/yjg30737/pyqt-resource-helper.git">pyqt-resource-helper</a>
 * <a href="https://github.com/yjg30737/pyqt-custom-titlebar-window.git">pyqt-custom-titlebar-window</a>
 
 ## Feature
 * Being able to fold, unfold window by toggle button on the menu bar
 * Being able to move the window with dragging menu bar
-* Being able to close (obviously)
 
 ## Example
 ```python
